@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WordStick — Learn Japanese by ear</title>
+<meta name="description" content="300 Japanese words in your first month — real words, said out loud, kept for good. About ten new words a session, locked in by scientifically proven recall. No download, free right now in early access.">
+<meta property="og:title" content="WordStick — Learn Japanese by ear">
+<meta property="og:description" content="300 Japanese words in your first month. Real words, said out loud, kept for good — locked in by scientifically proven recall.">
+<meta property="og:image" content="https://wordstick.app/icon-512.png">
+<meta property="og:url" content="https://wordstick.app/">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0a1c; --bg2:#171030; --card:rgba(157,92,255,.07);
+    --line:rgba(157,92,255,.25); --txt:#f1ecff; --muted:#a89bc9;
+    --purple:#9d5cff; --pink:#ff5d9e; --teal:#5fdcb4; --gold:#ffd98a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:'Nunito',system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+  .jp{font-family:'Noto Sans JP',sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  a{color:var(--pink)}
+
+  /* hero */
+  .hero{position:relative;padding:64px 0 55px;text-align:center;background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(157,92,255,.28), transparent 65%),
+    radial-gradient(ellipse 60% 45% at 85% 15%, rgba(255,93,158,.14), transparent 70%)}
+  .kana-eyebrow{font-size:13.5px;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
+  .kana-eyebrow .jp{letter-spacing:.4em}
+  h1{font-size:clamp(34px,7vw,52px);font-weight:900;line-height:1.15;letter-spacing:-.5px}
+  h1 .grad{background:linear-gradient(100deg,var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:clamp(15px,3.4vw,18px);font-weight:800;color:var(--gold);margin-top:10px;letter-spacing:.2px}
+  .sub{font-size:clamp(16px,3.5vw,19px);color:var(--muted);max-width:580px;margin:16px auto 0}
+  .sub b{color:var(--txt)}
+  .statline{font-size:13.5px;color:var(--teal);font-weight:700;max-width:520px;margin:14px auto 0}
+  .cta{display:inline-block;margin-top:26px;padding:17px 38px;border-radius:16px;background:linear-gradient(100deg,var(--purple),var(--pink));color:#fff;font-weight:900;font-size:17px;text-decoration:none;box-shadow:0 10px 30px rgba(157,92,255,.35)}
+  .cta:active{transform:scale(.98)}
+  .cta-note{font-size:12.5px;color:var(--muted);margin-top:12px}
+  .cta-mini{display:inline-block;margin-top:22px;padding:13px 28px;border-radius:14px;background:linear-gradient(100deg,var(--purple),var(--pink));color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 8px 22px rgba(157,92,255,.3)}
+
+  /* demo drill strip */
+  .demo{margin:44px auto 0;max-width:420px;text-align:left}
+  .bubble{border-radius:16px;padding:12px 16px;margin-bottom:10px;font-size:15px;max-width:85%}
+  .them{background:rgba(157,92,255,.13);border:1px solid var(--line)}
+  .them .en{font-size:12px;color:var(--muted);margin-top:3px}
+  .me{background:rgba(255,93,158,.12);border:1px solid rgba(255,93,158,.3);margin-left:auto;text-align:right}
+  .me .en{font-size:12px;color:var(--muted);margin-top:3px}
+  .mic-line{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);margin-top:4px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--pink);animation:pulse 1.3s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+  /* live one-word demo */
+  .live-demo{margin:26px auto 0;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;text-align:center}
+  .live-demo h3{font-size:15px;font-weight:800;margin-bottom:4px}
+  .live-demo p{font-size:12.5px;color:var(--muted)}
+  .ld-btn{margin-top:12px;padding:12px 26px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(100deg,var(--purple),var(--pink));color:#fff;font-weight:800;font-size:15px;font-family:inherit}
+  .ld-btn:active{transform:scale(.97)}
+  .ld-stage{min-height:64px;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:12px}
+  .ld-word{font-size:30px;font-weight:800}
+  .ld-romaji{font-size:13px;color:var(--muted)}
+  .ld-meaning{font-size:17px;font-weight:800;color:var(--teal);margin-top:4px}
+  .ld-think{font-size:13px;color:var(--muted);letter-spacing:.3em}
+
+  /* sections */
+  section{padding:56px 0}
+  h2{font-size:clamp(24px,5vw,32px);font-weight:900;line-height:1.25;margin-bottom:10px}
+  .lede{color:var(--muted);max-width:580px;margin-bottom:30px}
+  .feat{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px}
+  .feat .ico{font-size:26px;flex-shrink:0}
+  .feat h3{font-size:16.5px;font-weight:800;margin-bottom:4px}
+  .feat p{font-size:14.5px;color:var(--muted)}
+  .feat p b{color:var(--txt)}
+  .bodycopy{font-size:16px;color:var(--muted);max-width:620px}
+  .bodycopy b{color:var(--txt)}
+  .bodycopy a{color:var(--pink)}
+  .honesty{font-size:13.5px;color:var(--muted);max-width:580px;margin-top:18px;font-style:italic}
+  .ctarow{text-align:center}
+
+  /* research */
+  .research{background:rgba(95,220,180,.06);border:1px solid rgba(95,220,180,.25);border-radius:18px;padding:22px;font-size:14.5px;color:var(--muted);margin-top:26px}
+  .research b{color:var(--teal)}
+
+  /* pricing */
+  .price-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 26px;text-align:center}
+  .price-now{display:inline-block;background:rgba(95,220,180,.12);border:1px solid rgba(95,220,180,.35);color:var(--teal);font-weight:800;font-size:13px;border-radius:20px;padding:5px 16px;margin-bottom:16px}
+  .price-big{font-size:44px;font-weight:900}
+  .price-big span{font-size:16px;color:var(--muted);font-weight:600}
+  .price-alt{font-size:14.5px;color:var(--muted);margin-top:4px}
+  .price-alt b{color:var(--txt)}
+  .price-list{list-style:none;margin:20px auto 0;max-width:400px;text-align:left;font-size:14.5px}
+  .price-list li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .price-list li:last-child{border:none}
+  .price-list .tick{color:var(--teal);margin-right:9px}
+
+  /* faq */
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+  summary{font-weight:800;font-size:15px;cursor:pointer}
+  details p{margin-top:10px;font-size:14.5px;color:var(--muted)}
+
+  footer{padding:40px 0 60px;text-align:center;font-size:13px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kana-eyebrow">WordStick <span class="jp">ことば</span> · nothing to install</div>
+    <h1>300 Japanese words<br><span class="grad">in your first month.</span></h1>
+    <div class="tagline">Real words, said out loud, kept for good.</div>
+    <p class="sub">You can't say anything in Japanese until you know what things are called. <b>WordStick teaches you the words</b> — real, everyday Japanese, about ten new ones a session — and locks them in the scientifically proven way: you hear a word, and you <b>pull it back out of your own memory, out loud</b>.</p>
+    <div class="statline">That's ten new words a day, every day you show up — and the full 1,700-word everyday vocabulary well inside a year.</div>
+    <a class="cta" href="https://app.wordstick.app/">Start free — no signup</a>
+    <div class="cta-note">No download — open it and start talking, right in your browser · free right now in early access</div>
+
+    <div class="demo" aria-hidden="true">
+      <div class="bubble them">🔊 &ldquo;water&rdquo;</div>
+      <div class="bubble me"><span class="jp">みず！</span><div class="en">you, out loud, from memory</div></div>
+      <div class="bubble them">🔊 <span class="jp">「コーヒー」</span><div class="en">a new one — just listen and say what it means</div></div>
+      <div class="bubble me">&ldquo;coffee!&rdquo;</div>
+      <div class="mic-line"><span class="dot"></span> it keeps going on its own — no tapping, no reading</div>
+    </div>
+
+    <div class="live-demo">
+      <h3>Try one word — no signup</h3>
+      <p>Tap play, think for a beat, say it out loud. That's the whole trick.</p>
+      <div class="ld-stage" id="ldStage"><button class="ld-btn" id="ldBtn" type="button">▶ Play a word</button></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>You can't learn a language without words</h2>
+    <p class="lede">Grammar rules, streaks, cartoon owls — none of it matters if you don't know what anything is called. Every language starts the same way: <b style="color:var(--txt)">you need words.</b> That's the one job this app does, properly.</p>
+
+    <div class="feat"><div class="ico">🧱</div><div>
+      <h3>Real words, not points</h3>
+      <p>The <b>1,700 most-used everyday Japanese words</b> — water, coffee, left, right, cheap, tomorrow, help. The vocabulary that actually carries daily life, not trivia to keep a game going.</p>
+    </div></div>
+
+    <div class="feat"><div class="ico">🌱</div><div>
+      <h3>About ten new words a session</h3>
+      <p>Each session mixes a handful of brand-new words in with the ones you've already met. Show up most days and that's <b>hundreds of words within weeks</b> — real, countable progress.</p>
+    </div></div>
+
+    <div class="feat"><div class="ico">🧠</div><div>
+      <h3>Words that stay learned</h3>
+      <p>The app quietly brings each word back <b>right before you'd forget it</b>. What you learn in week one is still there in week six. That's the whole point — words you keep, not words you met once.</p>
+    </div></div>
+
+    <p class="honesty">Words alone won't make you fluent — nothing will in three months. But they're the one thing every path into Japanese runs through, and they're the part almost everyone quits before finishing.</p>
+
+    <div class="ctarow"><a class="cta-mini" href="https://app.wordstick.app/">Start free — no signup</a></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>The trick is recall — and it's scientifically proven</h2>
+    <p class="bodycopy">Most apps show you a word and ask if you recognised it. Recognising <i>feels</i> like learning; it isn't. WordStick makes you do the hard, useful thing instead: it says the cue, goes quiet, and you have to <b>pull the word out of your own memory and say it out loud</b>. That act of retrieving a word — instead of re-reading it — is one of the best-proven effects in all of memory science. WordStick is built on it, end to end.</p>
+    <div class="research">
+      <b>The proof:</b> two of the most replicated findings about human memory — pulling an answer from memory beats re-reading it (<a href="https://doi.org/10.1111/j.1467-9280.2006.01693.x" rel="noopener">Roediger &amp; Karpicke, 2006</a>), and spreading practice out beats cramming it (<a href="https://doi.org/10.1037/0033-2909.132.3.354" rel="noopener">Cepeda et&nbsp;al., 2006</a>). Every session in WordStick is those two findings, doing their job on your Japanese.
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>The app talks. You talk back.</h2>
+    <p class="bodycopy">No reading, no typing, no staring at a screen. WordStick speaks a word, <b>waits while you think</b>, then says the answer and moves on — all by itself. Phone in your pocket, earbuds in: it works while you drive, walk the dog, or do the dishes. You start from <b>absolute zero</b> — everything is spoken out loud, and the app teaches you the Japanese alphabet as you go. Stop mid-session whenever life happens; it continues where you left off, tomorrow.</p>
+    <div class="ctarow"><a class="cta-mini" href="https://app.wordstick.app/">Start free — no signup</a></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Nothing waiting for you when you get back</h2>
+    <p class="bodycopy">Most learning apps punish you for having a life. Miss a few days and you come back to hundreds of overdue flashcards. As one learning writer <a href="https://evakeiffenheim.substack.com/p/why-spaced-repetition-might-be-more" rel="noopener">put it</a>: <i>&ldquo;You return to find hundreds of overdue reviews. The app feels like a debt, not a tool. You close it and don't come back.&rdquo;</i> WordStick never shows you a pile. <b>No counts building up, no red badges, no backlog to dread.</b> The clever scheduling still happens — you just never have to look at it. Come back whenever you come back; it simply continues.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Simple, honest pricing</h2>
+    <p class="lede">Free to try right now, while WordStick is in early access.</p>
+    <div class="price-card">
+      <div class="price-now">Early access — free right now</div>
+      <div class="price-big">$8.99<span> / month at launch</span></div>
+      <div class="price-alt">or <b>$59.99 / year</b> — about $5 a month</div>
+      <ul class="price-list">
+        <li><span class="tick">✓</span><b>7-day free trial</b> at launch — cancel anytime</li>
+        <li><span class="tick">✓</span>For reference: Pimsleur, the audio incumbent, runs about $20 a month for repeat-after-me lessons. WordStick is $8.99 — and makes you recall the word, not repeat it.</li>
+        <li><span class="tick">✓</span>All 1,700 words, the Japanese alphabet taught from zero, sentence &amp; verb practice included</li>
+        <li><span class="tick">✓</span>Your progress stays on your phone</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>I know absolutely nothing — not one word, can't read a single character. Can I start?</summary>
+      <p>Yes — that's exactly who this is for. Everything is spoken out loud, so you can learn words before you can read anything. The app teaches you the Japanese alphabet as you go, in small steps.</p></details>
+    <details><summary>Can I really do this without looking at my phone?</summary>
+      <p>Yes, for the core practice. It speaks, pauses, reveals the answer, and continues on its own. Glance at the screen whenever you want the spelling or a hint — it never requires it.</p></details>
+    <details><summary>Is my voice recorded or stored anywhere?</summary>
+      <p>No — nothing you say is ever recorded or kept. Speech is handled by your phone's own voice services, and answering by voice is optional anyway: tapping or typing works exactly the same. Details in our <a href="privacy.html">privacy policy</a>.</p></details>
+    <details><summary>What if I miss a few days — or a few weeks?</summary>
+      <p>Nothing bad. There's no pile to catch up on and no red numbers waiting. A streak exists, if you switch it on. Nothing else is watching. You open the app, it picks up, you continue.</p></details>
+    <details><summary>What phones does it work on?</summary>
+      <p>It runs in the browser — best on Android with Chrome today, fine on most modern phones. Voice answering is only a convenience, never a test — if the mic misses you, tap or type instead.</p></details>
+    <details><summary>Isn't there a free option already, like Language Transfer?</summary>
+      <p>Yes — Language Transfer is genuinely free and genuinely good, especially for how the language fits together. WordStick's job is different: building your word stock and making it stick. Right now WordStick is free too — try both.</p></details>
+    <details><summary>What happens when early access ends?</summary>
+      <p>The pricing above goes live with a 7-day free trial, announced clearly beforehand. Everything you've learned stays on your device either way.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div style="font-weight:800;color:var(--txt);margin-bottom:6px">WordStick <span class="jp" style="color:var(--muted)">ことば</span></div>
+    <div style="margin-bottom:6px">Learn Japanese by ear — hear it, say it, keep what sticks.</div>
+    <div><a href="privacy.html">Privacy policy</a> · <a href="mailto:juliuspireh@gmail.com">Contact</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WORDS=[
+    {kana:'みず', romaji:'mizu', en:'water'},
+    {kana:'ねこ', romaji:'neko', en:'cat'},
+    {kana:'コーヒー', romaji:'koohii', en:'coffee'},
+    {kana:'いぬ', romaji:'inu', en:'dog'},
+    {kana:'おはよう', romaji:'ohayou', en:'good morning'}
+  ];
+  var i=0, stage=document.getElementById('ldStage'), btn=document.getElementById('ldBtn');
+  if(!stage||!btn) return;
+
+  function jaVoice(){
+    try{
+      var vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];
+      for(var k=0;k<vs.length;k++){ if((vs[k].lang||'').toLowerCase().indexOf('ja')===0) return vs[k]; }
+    }catch(e){}
+    return null;
+  }
+  // warm the voice list (Chrome populates async)
+  try{ if(window.speechSynthesis){ window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged=function(){}; } }catch(e){}
+
+  function reveal(w, spoken){
+    stage.innerHTML='';
+    var d1=document.createElement('div'); d1.className='ld-word jp'; d1.textContent=w.kana;
+    var d2=document.createElement('div'); d2.className='ld-romaji'; d2.textContent=w.romaji;
+    var d3=document.createElement('div'); d3.className='ld-meaning'; d3.textContent='= '+w.en;
+    var again=document.createElement('button'); again.className='ld-btn'; again.type='button';
+    again.textContent='▶ Another word'; again.style.marginTop='14px';
+    again.addEventListener('click', play);
+    stage.appendChild(d1); stage.appendChild(d2); stage.appendChild(d3); stage.appendChild(again);
+  }
+
+  function think(w, spoken){
+    stage.innerHTML='';
+    if(!spoken){
+      // no Japanese voice available: text-led fallback, same rhythm
+      var d1=document.createElement('div'); d1.className='ld-word jp'; d1.textContent=w.kana;
+      var d2=document.createElement('div'); d2.className='ld-romaji'; d2.textContent=w.romaji+' — say it out loud';
+      stage.appendChild(d1); stage.appendChild(d2);
+    } else {
+      var t=document.createElement('div'); t.className='ld-think'; t.textContent='· · · your turn — say it';
+      stage.appendChild(t);
+    }
+    setTimeout(function(){ reveal(w, spoken); }, 2000);
+  }
+
+  function play(){
+    var w=WORDS[i%WORDS.length]; i++;
+    var v=jaVoice();
+    if(v && window.speechSynthesis){
+      try{
+        window.speechSynthesis.cancel();
+        var u=new SpeechSynthesisUtterance(w.kana);
+        u.voice=v; u.lang=v.lang; u.rate=0.9;
+        var started=false;
+        u.onstart=function(){ started=true; };
+        u.onend=function(){ think(w, true); };
+        u.onerror=function(){ think(w, false); };
+        window.speechSynthesis.speak(u);
+        // safety: if nothing started within 1.2s, fall back to text
+        setTimeout(function(){ if(!started){ try{window.speechSynthesis.cancel();}catch(e){} think(w, false); } }, 1200);
+        stage.innerHTML='<div class="ld-think">🔊 listen…</div>';
+        return;
+      }catch(e){ /* fall through to text mode */ }
+    }
+    think(w, false);
+  }
+
+  btn.addEventListener('click', play);
+})();
+</script>
+
+</body>
+</html>
